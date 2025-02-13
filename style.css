@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* verification */
+  /* border: 1px solid red; */
+}
+/* roots */
+:root {
+  --main-color: #597ca0;
+  --main-bg-color: #a8bcd1;
+  --main-text-color: #1e2733;
+  --main-hover-color: #2d3b4d;
+  --main-border-color: #394f6b;
+  --main-shadow-color: #d1dbe6;
+}
