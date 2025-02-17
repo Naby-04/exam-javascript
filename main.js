@@ -5,6 +5,7 @@ const userBirthDate = document.getElementById("userBirthDate");
 const userEmail = document.getElementById("userEmail");
 const userPassword = document.getElementById("userPassword");
 const submitButton = document.getElementById("submitButton");
+const resetButton = document.getElementById("resetButton");
 const unvalidFirstName = document.getElementById("unvalidFirstName");
 const unvalidName = document.getElementById("unvalidName");
 const unvalidBirthDate = document.getElementById("unvalidBirthDate");
@@ -12,6 +13,16 @@ const unvalidEmail = document.getElementById("unvalidEmail");
 const unvalidPassword = document.getElementById("unvalidPassword");
 const Form = document.getElementById("Form");
 // -----------------------------
+// initialisation local storage
+if (localStorage.getItem("user")) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  userFirstName.value = user.firstName;
+  userName.value = user.name;
+  userBirthDate.value = user.birthDate;
+  userEmail.value = user.email;
+  userPassword.value = user.password;
+}
+
 // prevent default form submission
 Form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -115,4 +126,67 @@ submitButton.addEventListener("click", function (event) {
   } else {
     unvalidPassword.textContent = "";
   }
+});
+
+// -----------------------------
+// save the data in the local storage
+submitButton.addEventListener("click", function () {
+  const user = {
+    firstName: userFirstName.value,
+    name: userName.value,
+    birthDate: userBirthDate.value,
+    email: userEmail.value,
+    password: userPassword.value,
+  };
+  localStorage.setItem("user", JSON.stringify(user));
+});
+// reset button add new user
+resetButton.addEventListener("click", function () {
+  localStorage.removeItem("user");
+  userFirstName.value = "";
+  userName.value = "";
+  userBirthDate.value = "";
+  userEmail.value = "";
+  userPassword.value = "";
+  unvalidFirstName.textContent = "";
+  unvalidName.textContent = "";
+  unvalidBirthDate.textContent = "";
+  unvalidEmail.textContent = "";
+  unvalidPassword.textContent = "";
+});
+
+// --------------- exo 2 ----------------
+const Video = document.getElementById("Video");
+Video.controls = true;
+localStorage.setItem("video", JSON.stringify(Video));
+// -----------------------------
+// save user last listen position in the storage and start the video from last listener position when reloading the page
+// if (localStorage.getItem("video")) {
+//   const currentTime = JSON.parse(localStorage.getItem("video"));
+//   Video.currentTime = currentTime;
+// }
+// document.addEventListener("DOMContentLoaded", function reloadVideo() {
+//   localStorage.setItem("video", JSON.stringify(Video.currentTime));
+// });
+
+// exo 3
+const subButton = document.getElementById("subButton");
+const showdiv = document.getElementById("show");
+subButton?.addEventListener("click", function sendrequest(e) {
+  e.preventDefault();
+  var url =
+    "https://newsapi.org/v2/top-headlines?" +
+    "country=us&" +
+    "apiKey=59d4e1538db64b4aa4c67e2b6b7e603b";
+
+  var req = new Request(url);
+
+  fetch(req)
+    .then(function (response) {
+      console.log(response.json());
+    })
+    .then(function (data) {
+      console.log(data);
+      showdiv.innerHTML = data[0].articles[0].title;
+    });
 });

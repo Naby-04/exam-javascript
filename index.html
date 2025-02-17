@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>examen javascript</title>
+    <!-- link font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- link-bootstrap -->
     <link
       rel="stylesheet"
@@ -34,10 +42,20 @@
   <body>
     <div class="container-fluid pt-5 p-5">
       <!-- exo 1 -->
-      <hr class="my-5" />
+      <!-- Gestion des medias et du DOM -->
+      <h1 class="text-center">Exercice 1</h1>
+      <!-- container video -->
+      <div id="videolistener" class="container-fluid">
+        <video id="Video" src="Video.mp4"></video>
+        <!-- ---------------------------- -->
+      </div>
+      <!-- container video exit -->
       <!-- exo 1 exit-->
       <!-- exo 2 -->
       <!-- Gestion de formulaire dynamiques et validation -->
+      <hr class="my-5" />
+      <h1 class="text-center">Exercice 2</h1>
+
       <!-- partie formulaire -->
       <form id="Form" class="container">
         <div class="mb-3">
@@ -94,16 +112,22 @@
           />
           <div id="unvalidPassword" class="form-text text-danger"></div>
         </div>
-        <button id="submitButton" type="submit" class="btn btn-primary mt-5">
+        <button id="submitButton" type="submit" class="btn btn-primary">
           Submit
         </button>
-        <!-- button to delete all data from the local starorage and the form -->
-        <button type="submit" class="btn btn-primary mt-5">Delete all</button>
+        <!-- button to delete all data from the form -->
+        <button id="resetButton" type="button" class="btn btn-primary">
+          Reset
+        </button>
       </form>
-      <hr class="my-5" />
       <!-- partie formulaire exit -->
+      <hr class="my-5" />
       <!-- exo 2 exit -->
       <!-- exo 3 -->
+      <h1 class="text-center">Exercice 3</h1>
+
+      <button id="subButton">get response</button>
+      <div id="show"></div>
       <!-- exo 3 exit -->
     </div>
   </body>

@@ -13,3 +13,14 @@
   --main-border-color: #394f6b;
   --main-shadow-color: #d1dbe6;
 }
+
+/* css for the video listener */
+#videolistener {
+  height: 70vh;
+  border: 2px dashed var(--main-border-color) !important;
+  background: var(--main-bg-color);
+  video {
+    width: 100%;
+    height: 100%;
+  }
+}
