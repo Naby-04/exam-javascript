@@ -172,21 +172,32 @@ localStorage.setItem("video", JSON.stringify(Video));
 // exo 3
 const subButton = document.getElementById("subButton");
 const showdiv = document.getElementById("show");
-subButton?.addEventListener("click", function sendrequest(e) {
-  e.preventDefault();
-  var url =
-    "https://newsapi.org/v2/top-headlines?" +
-    "country=us&" +
-    "apiKey=59d4e1538db64b4aa4c67e2b6b7e603b";
 
-  var req = new Request(url);
-
-  fetch(req)
-    .then(function (response) {
-      console.log(response.json());
-    })
-    .then(function (data) {
-      console.log(data);
-      showdiv.innerHTML = data[0].articles[0].title;
+// initialisation api
+const apiKey = "59d4e1538db64b4aa4c67e2b6b7e603b"; //my api key
+const url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=59d4e1538db64b4aa4c67e2b6b7e603b`;
+//--------------------------------------
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    showdiv.innerHTML = "";
+    data.articles.forEach((article) => {
+      const articleDiv = document.createElement("div");
+      articleDiv.classList.add("article");
+      articleDiv.classList.add("col-12");
+      articleDiv.classList.add("col-md-6");
+      showdiv.classList.add("row");
+      articleDiv.innerHTML = `
+      <div class="p-0">
+      <img src="${article.urlToImage}" alt="${article.title}" />
+      <div class="article-content bg-light d-flex flex-column justify-content-between px-2 py-3">
+      <h2>${article.title}</h2>
+        <p >${article.description}</p>
+        <a href="${article.url}" target="_blank">Read more</a>
+        </div>
+      </div>
+        `;
+      showdiv.appendChild(articleDiv);
     });
-});
+  });
